@@ -31,4 +31,21 @@ const addNums = (x: number, y: number): number => {
     return x + y;
 }
 
-addNums(5, 5):
+addNums(5, 5);
+
+const colors = ["red", "orange", "yellow"];
+colors.map(color => {
+    return color.toUpperCase();
+})
+
+//void return type
+function printTwice(msg: string){
+    console.log(msg);
+    console.log(msg);
+}
+
+//never return type
+function makeError(msg: string): never{
+    throw new Error(msg);
+}
+

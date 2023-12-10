@@ -13,3 +13,17 @@ function printAge(age: number | string): void{
 printAge(23);
 printAge("12");
 
+// const stuff: (number | string)[] = ["asd", "dfg", "hvd", 1, 76]
+
+//literal types
+const zero: 0 = 0;
+let hi: "hi";
+let mood: "happy" | "sad" = "happy";
+
+//combining literals with unions
+const giveAnswer = (answer: "yes" | "no" | "maybe") => {
+    return `the answer is ${answer}.`;
+}
+
+giveAnswer("no") //The answer is no.
+// giveAnswer("I'm not sure") //results in an error

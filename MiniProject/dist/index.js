@@ -1,4 +1,6 @@
 // console.log("Woohoo yeah!!!");
+const todos = readTodos();
+todos.forEach(createTodo);
 const btn = document.getElementById("btn");
 const input = document.getElementById("todoinput");
 const form = document.querySelector("form");
@@ -9,8 +11,6 @@ function readTodos() {
         return [];
     return (JSON.parse(todosJSON));
 }
-const todos = readTodos();
-todos.forEach(createTodo);
 function handleSubmit(e) {
     e.preventDefault();
     const newTodo = {
@@ -27,15 +27,12 @@ function createTodo(todo) {
     const newLI = document.createElement("li");
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.addEventListener("change", function () {
-        console.log("CLICKED!");
-    });
     newLI.append(todo.text);
     newLI.append(checkbox);
     list.append(newLI);
 }
 form.addEventListener("submit", handleSubmit);
-export {};
+// export {};
 // form.addEventListener("submit", function(e) {
 //     e.preventDefault();
 //     console.log("SUBMITTED!");

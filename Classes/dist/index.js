@@ -1,72 +1,73 @@
 "use strict";
-// console.log("Yayyay!");
-// console.log("Working!");
-
 class Player {
-    static team = "UWA";
-
-    #score = 0;
-    numLives = 10;
-
-    constructor(first, last){
+    constructor(first, last) {
+        this._score = 0;
         this.first = first;
         this.last = last;
+        this.secretMethod();
     }
-
+    //shortcut in TS instead of initializing separately
+    // constructor(
+    //     public first: string, 
+    //     public last: string,
+    //     private score: number
+    //     ) {}
+    secretMethod() {
+        console.log("Long throw");
+    }
     get fullName() {
         return `${this.first} ${this.last}`;
     }
-    set score(newScore){
-        if(newScore < 0) throw new Error("Score must be +ve");
-        this.#score = newScore
+    set score(newScore) {
+        if (newScore < 0)
+            throw new Error("Score cannot be negative");
+        this._score = newScore;
     }
-    get score(){
-        return this.#score;
+    get score() {
+        return this._score;
     }
-
-    static randomPlayer() {
-        return new Player("Amy Michelle");
-    }
-
-    updateScore(newScore){
-        this.#score = newScore;
-    }
-    taunt(){
-        console.log("BOOYAH!")
-    }
-    loseLife() {
-        this.numLives -= 1;
-    }
-
 }
-
-const player1 = new Player("blue", "steele");
-player1.taunt();
-
-// console.log(player1.first)
-// console.log(player1.last)
-// console.log(player1.numLives)
-
-// console.log("The score is: " + player1.score)
-// player1.updateScore(28);
-// console.log("The score is: " + player1.score)
-// player1.score =  +3;
-// console.log("The score is: " + player1.score)
-
-// console.log(player1.fullName);
-
-// player1.loseLife();
-// console.log(player1.numLives)
-
-//extends
-class adminPlayer extends Player {
-    constructor(first, last, powers){
-        super(first, last);
-        this.powers = powers;
+const elton = new Player("Elton", "Gross");
+// console.log(elton.fullName);
+// elton.score = 23;
+// console.log(elton.score);
+class superPlayer extends Player {
+    constructor() {
+        super(...arguments);
+        this.isAdmin = true;
     }
-    isAdmin = true;
+    maxScore() {
+        this._score = 999; // we do not have access to this outside class if this is private
+    }
 }
-
-const admin = new adminPlayer("Mr.", "Shiyogi", ["teach", "punish"]);
-
-//super
+class Bike {
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Jacket {
+    constructor(color, brand) {
+        this.color = color;
+        this.brand = brand;
+    }
+    print() {
+        console.log("Them new jackets!");
+    }
+}
+const bike1 = new Bike("red");
+const jacket1 = new Jacket("blue", "Zara");
+console.log(bike1);
+console.log(jacket1);
+console.log(elton);
+//abstract classes
+class Employee {
+    constructor(first, last) {
+        this.first = first;
+        this.last = last;
+    }
+    ;
+    //abstract class has functions and data - which is something that is not in an interfact
+    greet() {
+        console.log("Hello!");
+    }
+}
